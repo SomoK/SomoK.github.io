@@ -63,15 +63,6 @@ async function predict() {
 					var texts = data.responses[0].textAnnotations[0].description.toUpperCase().replace(/\n/g, " ");
 					console.log('texts: ' + texts);
 					var detectedProduct = searchProducts(texts);
-					console.log("detectedProduct: " + detectedProduct);
-					if (detectedProduct == "")
-					{
-						result.innerText = "NONE";
-					}
-					else
-					{
-						result.innerText = detectedProduct;
-					}
 					perfumeDetected = true;
 					return true;
 				}
@@ -96,6 +87,14 @@ async function searchProducts(inputText) {
 		{
 			detectedProduct = products[i];
 		}
+	}
+	if (detectedProduct == "")
+	{
+		result.innerText = "NONE";
+	}
+	else
+	{
+		result.innerText = detectedProduct;
 	}
 	return detectedProduct;
 }
