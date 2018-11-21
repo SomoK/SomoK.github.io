@@ -33,15 +33,6 @@ export default class Webcam {
   capture() {
 	var canvas = document.getElementById('webcam-canvas');
 	
-	const aspectRatio = this.webcamElement.width / this.webcamElement.height;
-	if (this.webcamElement.width >= this.webcamElement.height) {
-		canvas.width = aspectRatio * 224;
-		canvas.height = 224;
-	} else if (this.webcamElement.width < this.webcamElement.height) {
-		canvas.width = 224;
-		canvas.height = 224 / aspectRatio;
-	}
-	
 	const croppedImage = this.cropImage(canvas);
 	
 	return croppedImage;
@@ -52,12 +43,14 @@ export default class Webcam {
    * @param {Tensor4D} img An input image Tensor to crop.
    */
   cropImage(img) {
-    const size = Math.min(img.height, img.width);
-    const centerHeight = img.height / 2;
+    const size = Math.min(this.webcamElement.height, this.webcamElement.width);
+    const centerHeight = this.webcamElement.height / 2;
     const beginHeight = centerHeight - (size / 2);
-    const centerWidth = img.width / 2;
+    const centerWidth = this.webcamElement.width / 2;
     const beginWidth = centerWidth - (size / 2);
 	var ctx = img.getContext("2d");
+	img.width = size;
+	img.height = size;
 	ctx.drawImage(this.webcamElement,beginWidth,beginHeight,size,size,0,0,img.width,img.height);
 	var croppedImage = img.toDataURL("image/jpeg").replace("image/jpeg", "image/octet-stream");
 	croppedImage = croppedImage.replace("data:image/octet-stream;base64,", "");

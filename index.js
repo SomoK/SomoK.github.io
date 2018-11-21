@@ -55,6 +55,7 @@ async function predict() {
 		visionApiRequest.onload = function(){
 			const data = JSON.parse(visionApiRequest.responseText);
 			var labels = data.responses[0].labelAnnotations;
+			var perfumeDetected = false;
 			labels.forEach(function(label) {
 				console.log(label.description);
 				if (label.description == 'perfume')
@@ -63,10 +64,22 @@ async function predict() {
 					console.log('texts: ' + texts);
 					var detectedProduct = searchProducts(texts);
 					console.log("detectedProduct: " + detectedProduct);
-					result.innerText = detectedProduct;
+					if (detectedProduct == "")
+					{
+						result.innerText = "NONE";
+					}
+					else
+					{
+						result.innerText = detectedProduct;
+					}
+					perfumeDetected = true;
+					return true;
 				}
-				return true;
 			});
+			if (!perfumeDetected)
+			{
+				result.innerText = "NONE";
+			}
 		};
 		visionApiRequest.open("POST","https://vision.googleapis.com/v1/images:annotate?key=AIzaSyAtuu3UDpiJqY_uWBSerugsZoXX-IyFS98",!0);
 		visionApiRequest.send(JSON.stringify(request));
