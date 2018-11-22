@@ -43,30 +43,10 @@ export default class Webcam {
 	var ctx = canvas.getContext("2d");
 	ctx.drawImage(this.webcamElement,0,0,canvas.width,canvas.height);
 	
-	var croppedImage = this.cropImage(canvas);
-	console.log(croppedImage);
-	return croppedImage;
-  }
-
-  /**
-   * Crops an image tensor so we get a square image with no white space.
-   * @param {Tensor4D} img An input image Tensor to crop.
-   */
-  cropImage(img) {
-	var croppedCanvas = document.getElementById('webcamCropped-canvas');
-    const size = Math.min(img.height, img.width);
-    const centerHeight = img.height / 2;
-    const beginHeight = centerHeight - (size / 2);
-    const centerWidth = img.width / 2;
-    const beginWidth = centerWidth - (size / 2);
-	croppedCanvas.width = size;
-	croppedCanvas.height = size;
-	var ctx = croppedCanvas.getContext("2d");
-	ctx.drawImage(img,beginWidth,beginHeight,size,size,0,0,croppedCanvas.width,croppedCanvas.height);
-	var croppedImage = croppedCanvas.toDataURL("image/jpeg").replace("image/jpeg", "image/octet-stream");
-	croppedImage = croppedImage.replace("data:image/octet-stream;base64,", "");
-
-    return croppedImage;
+	var imgB64_jpeg = croppedCanvas.toDataURL("image/jpeg").replace("image/jpeg", "image/octet-stream");
+	imgB64_jpeg = croppedImage.replace("data:image/octet-stream;base64,", "");
+	
+	return imgB64_jpeg;
   }
 
   /**
