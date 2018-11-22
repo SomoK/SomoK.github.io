@@ -79,13 +79,20 @@ async function predict() {
 }
 
 async function searchProducts(inputText) {
-	var products = ["NARCISO", "NARCISO EAU DE PARFUM POUDRÉE", "NARCISO RODRIGUEZ FOR HER", "NARCISO RODRIGUEZ FOR HIM"];
+	var products = ["NARCISO", "NARCISO EAU DE PARFUM POUDRÉE", "NARCISO RODRIGUEZ FOR HER", "FOR HIM NARCISO RODRIGUEZ"];
 	var detectedProduct = "";
 	for (var i = 0; i < products.length; i++)
 	{
 		if (inputText.includes(products[i]) && (products[i].length > detectedProduct.length))
 		{
-			detectedProduct = products[i];
+			if (i == 3)
+			{
+				detectedProduct = "NARCISO RODRIGUEZ FOR HIM"
+			}
+			else
+			{
+				detectedProduct = products[i];
+			}
 		}
 	}
 	if (detectedProduct == "")

@@ -59,9 +59,9 @@ export default class Webcam {
     const beginHeight = centerHeight - (size / 2);
     const centerWidth = img.width / 2;
     const beginWidth = centerWidth - (size / 2);
-	var ctx = croppedCanvas.getContext("2d");
 	croppedCanvas.width = size;
 	croppedCanvas.height = size;
+	var ctx = croppedCanvas.getContext("2d");
 	ctx.drawImage(img,beginWidth,beginHeight,size,size,0,0,croppedCanvas.width,croppedCanvas.height);
 	var croppedImage = croppedCanvas.toDataURL("image/jpeg").replace("image/jpeg", "image/octet-stream");
 	croppedImage = croppedImage.replace("data:image/octet-stream;base64,", "");
