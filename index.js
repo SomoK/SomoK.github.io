@@ -40,7 +40,7 @@ async function predict() {
 				"features":[
 				  {
 					"type":"LABEL_DETECTION",
-					"maxResults":10
+					"maxResults":5
 				  },
 				  {
 					"type":"DOCUMENT_TEXT_DETECTION"
@@ -58,7 +58,7 @@ async function predict() {
 			var perfumeDetected = false;
 			labels.forEach(function(label) {
 				console.log(label.description);
-				if (label.description == 'perfume')
+				if (label.description == 'perfume' || abel.description == 'product')
 				{
 					var texts = data.responses[0].textAnnotations[0].description.toUpperCase().replace(/\n/g, " ");
 					console.log('texts: ' + texts);
