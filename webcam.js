@@ -34,11 +34,11 @@ export default class Webcam {
 	var canvas = document.getElementById('webcam-canvas');
 	const aspectRatio = this.webcamElement.width / this.webcamElement.height;
     if (this.webcamElement.width >= this.webcamElement.height) {
-      canvas.width = aspectRatio * 224;
-      canvas.height = 224;
+      canvas.width = aspectRatio * 500;
+      canvas.height = 500;
     } else if (this.webcamElement.width < this.webcamElement.height) {
-      canvas.width = 224;
-      canvas.height = 224 / aspectRatio;
+      canvas.width = 500;
+      canvas.height = 500 / aspectRatio;
     }
 	var ctx = canvas.getContext("2d");
 	ctx.drawImage(this.webcamElement,0,0,canvas.width,canvas.height);
