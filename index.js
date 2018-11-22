@@ -40,7 +40,7 @@ async function predict() {
 				"features":[
 				  {
 					"type":"LABEL_DETECTION",
-					"maxResults":5
+					"maxResults":10
 				  },
 				  {
 					"type":"DOCUMENT_TEXT_DETECTION"
