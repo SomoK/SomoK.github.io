@@ -43,8 +43,8 @@ export default class Webcam {
 	var ctx = canvas.getContext("2d");
 	ctx.drawImage(this.webcamElement,0,0,canvas.width,canvas.height);
 	
-	var imgB64_jpeg = croppedCanvas.toDataURL("image/jpeg").replace("image/jpeg", "image/octet-stream");
-	imgB64_jpeg = croppedImage.replace("data:image/octet-stream;base64,", "");
+	var imgB64_jpeg = canvas.toDataURL("image/jpeg").replace("image/jpeg", "image/octet-stream");
+	imgB64_jpeg = imgB64_jpeg.replace("data:image/octet-stream;base64,", "");
 	
 	return imgB64_jpeg;
   }
