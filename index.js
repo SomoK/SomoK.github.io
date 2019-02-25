@@ -25,8 +25,6 @@ const result = document.getElementById('result');
 
 let isPredicting = false;
 
-const result_array = ['NARCISO RODRIGUEZ FOR HER', 'NARCISO EAU DE PARFUM POUDÉE', 'NARCISO RODRIGUEZ FOR HIM', 'NONE'];
-
 async function predict() {
     console.log("start Predict");
     result.innerText = "Start Predicting...";
@@ -58,6 +56,7 @@ async function predict() {
 			var perfumeDetected = false;
 			labels.forEach(function(label) {
 				console.log(label.description);
+				console.log('texts: ' + texts);
 				if (label.description == 'perfume' || label.description == 'product')
 				{
 					var texts = data.responses[0].textAnnotations[0].description.toUpperCase().replace(/\n/g, " ");
